@@ -60,17 +60,9 @@ def add_noise(dir,dst):
     count=0
     for i in files:
         if (count <= n):
-           # intro=AudioSegment.from_file(i)
-           # outro=AudioSegment.from_wav("subway-train-1.wav")
-           # outro =WhiteNoise().to_audio_segment(duration=500)
-            #op=intro.overlay(outro)
-            #outro=outro-20
-            #op=intro.overlay(outro,position=200)
             data, samplerate = sf.read(i)
             noise = np.random.normal(0,1,len(data))
-            #op=intro.overlay(noise)
             op=data+0.0009*noise
-            #op.export(os.path.join(dst, "%09d" % count)+".flac",format="flac")
             sf.write(os.path.join(dst, "%09d" % count)+".flac",op,samplerate)
             count=count+1
         else:
